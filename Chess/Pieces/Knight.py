@@ -1,4 +1,6 @@
-class Knight:
-    def __init__(self, representation):
-        self.representation = representation('Knight')
-        self.position = (None, None)
+from .Piece import Piece
+
+
+class Knight(Piece):
+    def __init__(self, color):
+        Piece.__init__(self, 'Knight', color)

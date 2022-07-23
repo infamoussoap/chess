@@ -1,4 +1,7 @@
-class Pawn:
-    def __init__(self, representation):
-        self.representation = representation('Pawn')
-        self.position = (None, None)
+from .Piece import Piece
+
+
+class Pawn(Piece):
+    def __init__(self, color):
+        Piece.__init__(self, 'Pawn', color)
+        

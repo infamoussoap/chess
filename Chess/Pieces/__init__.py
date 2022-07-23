@@ -1,5 +1,3 @@
-from . import Representation
-
 from .Pawn import Pawn
 from .Knight import Knight
 from .Bishop import Bishop

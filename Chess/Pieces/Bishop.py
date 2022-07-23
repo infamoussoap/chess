@@ -1,4 +1,6 @@
-class Bishop:
-    def __init__(self, representation):
-        self.representation = representation('Bishop')
-        self.position = (None, None)
+from .Piece import Piece
+
+
+class Bishop(Piece):
+    def __init__(self, color):
+        Piece.__init__(self, 'Bishop', color)
