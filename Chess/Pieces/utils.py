@@ -44,16 +44,35 @@ def is_empty_vertically(start_pos_numeric, end_pos_numeric, board):
     return True
 
 
-def is_move_horizontal(start_pos, end_pos):
+def is_move_horizontal(start_pos, end_pos, board):
     """ Positions expected to be in algebraic format """
     start_pos_numeric = algebraic_to_numeric(start_pos)
     end_pos_numeric = algebraic_to_numeric(end_pos)
 
     if end_pos[1] == start_pos[1]:
-        displacement = end_pos[0] - start_pos_numeric[0]
-        return True, displacement
+        displacement = end_pos_numeric[0] - start_pos_numeric[0]
 
-    return False, None
+        empty_horizontally = is_empty_horizontally(start_pos_numeric, end_pos_numeric, board)
+
+        return True, displacement, empty_horizontally
+
+    return False, None, None
+
+
+def is_empty_horizontally(start_pos_numeric, end_pos_numeric, board):
+    """ It is assumed that the move is horizontal """
+    vertical_pos = start_pos_numeric[1]
+
+    horizontal_start = min(start_pos_numeric[0], end_pos_numeric[0])
+    horizontal_end = max(start_pos_numeric[0], end_pos_numeric[0])
+
+    if horizontal_end - horizontal_start <= 1:
+        return True
+
+    for i in range(horizontal_start + 1, horizontal_end):
+        if not isinstance(board[i, vertical_pos], Blank):
+            return False
+    return True
 
 
 def is_move_diagonal(start_pos, end_pos):
