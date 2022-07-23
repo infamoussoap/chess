@@ -6,5 +6,5 @@ class Blank(Piece):
         Piece.__init__(self, 'Blank', None)
 
     @property
-    def representation(self):
+    def icon(self):
         return ' '

@@ -1,4 +1,4 @@
-from .Representation import unicode_black, unicode_white
+from .Icons import unicode_black, unicode_white
 
 
 class Piece:
@@ -8,7 +8,7 @@ class Piece:
         self.position = (None, None)
 
     @property
-    def representation(self):
+    def icon(self):
         if self.color == 'black':
             return unicode_black(self.piece_type)
         else:
