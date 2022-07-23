@@ -8,3 +8,6 @@ class Blank(Piece):
     @property
     def icon(self):
         return ' '
+
+    def is_valid_move(self, start_pos, end_pos, board):
+        raise ValueError("Blank Piece cannot move")
