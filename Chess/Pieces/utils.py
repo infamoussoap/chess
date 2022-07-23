@@ -75,13 +75,31 @@ def is_empty_horizontally(start_pos_numeric, end_pos_numeric, board):
     return True
 
 
-def is_move_diagonal(start_pos, end_pos):
+def is_move_diagonal(start_pos, end_pos, board):
     start_pos_numeric = algebraic_to_numeric(start_pos)
     end_pos_numeric = algebraic_to_numeric(end_pos)
 
     displacement = (end_pos_numeric[0] - start_pos_numeric[0], end_pos_numeric[1] - start_pos_numeric[1])
 
     if abs(displacement[0]) == abs(displacement[1]):
-        return True, displacement
+        empty_diagonally = is_empty_diagonally(start_pos_numeric, end_pos_numeric, board)
+        return True, displacement, empty_diagonally
 
-    return False, (None, None)
+    return False, (None, None), None
+
+
+def is_empty_diagonally(start_pos_numeric, end_pos_numeric, board):
+    """ Assumed that the move is diagonal """
+    displacement = (end_pos_numeric[0] - start_pos_numeric[0], end_pos_numeric[1] - start_pos_numeric[1])
+    d_row, d_col = [sign(x) for x in displacement]
+
+    for row in range(start_pos_numeric[0], end_pos_numeric[0], d_row):
+        for col in range(start_pos_numeric[1], end_pos_numeric[1], d_col):
+            if not isinstance(board[row, col], Blank):
+                return False
+
+    return True
+
+
+def sign(x):
+    return -1 if x < 0 else 1
