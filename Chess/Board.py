@@ -1,5 +1,6 @@
 import numpy as np
 
+from .Pieces.utils import algebraic_to_numeric
 from . import Pieces
 from .DefaultBoard import default_board
 
@@ -31,3 +32,10 @@ class Board:
             pass
 
         self.move_count += 1
+
+    def __getitem__(self, *args):
+        if len(args) == 1 and isinstance(args[0], str):
+            coords = algebraic_to_numeric(args[0])
+            return self.board[coords[0], coords[1]]
+
+        return self.board.__getitem__(*args)
