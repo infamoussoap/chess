@@ -13,3 +13,8 @@ class Piece:
             return unicode_black(self.piece_type)
         else:
             return unicode_white(self.piece_type)
+
+    @staticmethod
+    def is_valid_move(start_pos, end_pos):
+        """ start_pos and end_pos expected to be in algebraic notation """
+        raise NotImplementedError
