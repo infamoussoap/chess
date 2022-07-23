@@ -3,8 +3,6 @@ from .Representation import unicode_black, unicode_white
 
 class Piece:
     def __init__(self, piece_type, color):
-        assert color == 'black' or color == 'white', ValueError(f"{self.color} is invalid type")
-
         self.piece_type = piece_type
         self.color = color
         self.position = (None, None)
