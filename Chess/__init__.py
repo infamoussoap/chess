@@ -1,1 +1,1 @@
-from . import Pieces
+from .Board import Board
