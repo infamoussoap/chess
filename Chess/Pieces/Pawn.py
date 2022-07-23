@@ -33,8 +33,8 @@ class Pawn(Piece):
 
         if self.color == 'black':
             vertical_displacement = vertical_displacement * -1
-        
+
         if is_diagonal and vertical_displacement == 1:
-            return not end_pos_is_empty
+            return (not end_pos_is_empty) and (board_at_end_pos.color != self.color)
 
         return False
