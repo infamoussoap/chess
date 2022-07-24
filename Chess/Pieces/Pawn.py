@@ -26,7 +26,7 @@ class Pawn(Piece):
 
             return Pawn._check_vertical_move(displacement, end_pos_is_empty, vertically_empty, self.move_count)
 
-        is_diagonal, (_, vertical_displacement) = is_move_diagonal(start_pos, end_pos)
+        is_diagonal, (_, vertical_displacement), _ = is_move_diagonal(start_pos, end_pos, board)
         if is_diagonal:
             if self.color == 'black':
                 vertical_displacement = vertical_displacement * -1
