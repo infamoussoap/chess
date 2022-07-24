@@ -93,10 +93,11 @@ def is_empty_diagonally(start_pos_numeric, end_pos_numeric, board):
     displacement = (end_pos_numeric[0] - start_pos_numeric[0], end_pos_numeric[1] - start_pos_numeric[1])
     d_row, d_col = [sign(x) for x in displacement]
 
-    for row in range(start_pos_numeric[0], end_pos_numeric[0], d_row):
-        for col in range(start_pos_numeric[1], end_pos_numeric[1], d_col):
-            if not isinstance(board[row, col], Blank):
-                return False
+    distance = abs(displacement[0])
+    for i in range(1, distance):
+        new_pos = start_pos_numeric[0] + i * d_row, start_pos_numeric[1] + i * d_col
+        if not isinstance(board[new_pos[0], new_pos[1]], Blank):
+            return False
 
     return True
 
