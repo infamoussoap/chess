@@ -80,3 +80,11 @@ class Board:
             self.board[coords[0], coords[1]] = value
         else:
             self.board.__setitem__(key, value)
+
+    @property
+    def black_pieces(self):
+        return [piece for piece in self.board.flatten() if piece.color == 'black']
+
+    @property
+    def white_pieces(self):
+        return [piece for piece in self.board.flatten() if piece.color == 'white']
