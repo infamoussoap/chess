@@ -5,7 +5,8 @@ class Piece:
     def __init__(self, piece_type, color):
         self.piece_type = piece_type
         self.color = color
-        self.position = (None, None)
+
+        self.move_count += 1
 
     @property
     def icon(self):
