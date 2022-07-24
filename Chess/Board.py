@@ -33,12 +33,16 @@ class Board:
         Board._check_long_algebraic_notation(move)
 
         start_pos, end_pos = move[:2], move[3:]
-        assert not isinstance(self[start_pos], Pieces.Blank), "No piece at starting position"
+        if isinstance(self[start_pos], Pieces.Blank):
+            print("Invalid Move: No piece at starting position")
+            return
 
-        if self.move_count % 2 == 0:  # White to move
-            assert self[start_pos].color == 'white', "White to move"
-        else:  # Black to move
-            assert self[start_pos].color == 'black', "Black to move"
+        if self.move_count % 2 == 0 and self[start_pos].color != 'white':  # White to move
+            print("Invalid Move: White to move")
+            return
+        elif self.move_count % 2 == 1 and self[start_pos].color != 'black':  # Black to move
+            print("Invalid Move: Black to move")
+            return
 
         is_valid, move_message = self[start_pos].is_valid_move(start_pos, end_pos, self)
         if is_valid:
@@ -46,10 +50,12 @@ class Board:
             self[start_pos] = Pieces.Blank()
 
             self[end_pos].move_count += 1
-        else:
-            raise ValueError(f"Invalid Move: {move_message}")
+            self.move_count += 1
 
-        self.move_count += 1
+            return
+
+        print(f"Invalid Move: {move_message}")
+        return
 
     @staticmethod
     def _check_long_algebraic_notation(move):
