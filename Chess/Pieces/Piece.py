@@ -6,7 +6,7 @@ class Piece:
         self.piece_type = piece_type
         self.color = color
 
-        self.move_count += 1
+        self.move_count = 0
 
     @property
     def icon(self):
