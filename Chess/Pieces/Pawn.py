@@ -6,7 +6,6 @@ from .utils import algebraic_to_numeric, is_move_vertical, is_move_diagonal
 class Pawn(Piece):
     def __init__(self, color):
         Piece.__init__(self, 'Pawn', color)
-        self.move_count = 0
 
     def is_valid_move(self, start_pos, end_pos, board):
         start_pos_numeric = algebraic_to_numeric(start_pos)
