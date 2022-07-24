@@ -16,8 +16,11 @@ class King(Piece):
 
         board_at_end_pos = board[end_pos_numeric[0], end_pos_numeric[1]]
 
+        if board_at_end_pos.color == self.color:
+            return False, "Pieces of the same color cannot capture each other"
+
         if abs(end_pos_numeric[0] - start_pos_numeric[0]) <= 1\
             and abs(end_pos_numeric[0] - start_pos_numeric[0]) <= 1:
-            return board_at_end_pos.color != self.color
+            return True, None
 
-        return False
+        return False, "Kings can only move in a radius of 1 square around itself"

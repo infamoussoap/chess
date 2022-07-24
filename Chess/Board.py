@@ -40,13 +40,14 @@ class Board:
         else:  # Black to move
             assert self[start_pos].color == 'black', "Black to move"
 
-        if self[start_pos].is_valid_move(start_pos, end_pos, self):
+        is_valid, move_message = self[start_pos].is_valid_move(start_pos, end_pos, self)
+        if is_valid:
             self[end_pos] = self[start_pos]
             self[start_pos] = Pieces.Blank()
 
             self[end_pos].move_count += 1
         else:
-            raise ValueError("Invalid Move")
+            raise ValueError(f"Invalid Move: {move_message}")
 
         self.move_count += 1
 

@@ -11,23 +11,37 @@ class Queen(Piece):
         end_pos_numeric = algebraic_to_numeric(end_pos)
         board_at_end_pos = board[end_pos_numeric[0], end_pos_numeric[1]]
 
-        return self._valid_rook_moves(start_pos, end_pos, board, board_at_end_pos) \
-                or self._valid_bishop_moves(start_pos, end_pos, board, board_at_end_pos)
+        if board_at_end_pos.color == self.color:
+            return False, "Pieces of the same color cannot capture each other"
 
-    def _valid_rook_moves(self, start_pos, end_pos, board, board_at_end_pos):
         is_vertical, displacement, vertically_empty = is_move_vertical(start_pos, end_pos, board)
         if is_vertical:
-            return vertically_empty and (board_at_end_pos.color != self.color)
+            return Queen._check_vertical_move(vertically_empty)
 
         is_horizontal, displacement, horizontally_empty = is_move_horizontal(start_pos, end_pos, board)
         if is_horizontal:
-            return horizontally_empty and (board_at_end_pos.color != self.color)
-        return False
+            return Queen._check_horizontal_move(horizontally_empty)
 
-    def _valid_bishop_moves(self, start_pos, end_pos, board, board_at_end_pos):
         is_diagonal, displacement, diagonally_empty = is_move_diagonal(start_pos, end_pos, board)
-
         if is_diagonal:
-            return diagonally_empty and (board_at_end_pos.color != self.color)
+            return Queen._check_diagonal_move(diagonally_empty)
 
-        return False
+        return False, "Queen can only move vertically, horizontal or diagonally"
+
+    @staticmethod
+    def _check_vertical_move(vertically_empty):
+        if not vertically_empty:
+            return False, "There is a piece blocking this move"
+        return True, None
+
+    @staticmethod
+    def _check_horizontal_move(horizontally_empty):
+        if not horizontally_empty:
+            return False, "There is a piece blocking this move"
+        return True, None
+
+    @staticmethod
+    def _check_diagonal_move(diagonally_empty):
+        if not diagonally_empty:
+            return False, "There is a piece blocking this move"
+        return True, None
