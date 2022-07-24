@@ -5,6 +5,16 @@ from . import Pieces
 from .DefaultBoard import default_board
 
 
+""" To-Do
+    - Implement attacking squares for the pieces
+    - Check king move is valid (it's not in check)
+    - Check if king must move
+    - Check if game is finished
+    - Maybe display the attacking squares for a specific piece
+    - .move be able to accept multiple moves not just one
+"""
+
+
 class Board:
     def __init__(self):
         self.board = np.array([[Pieces.Blank() for col in range(8)] for row in range(8)])
