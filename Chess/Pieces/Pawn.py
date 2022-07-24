@@ -1,6 +1,7 @@
 from .Piece import Piece
 from .Blank import Blank
-from .utils import algebraic_to_numeric, is_move_vertical, is_move_diagonal
+from .utils import algebraic_to_numeric, numeric_to_algebraic
+from .utils import is_move_vertical, is_move_diagonal
 
 
 class Pawn(Piece):
@@ -59,3 +60,13 @@ class Pawn(Piece):
             return False, "Pawn can only move diagonally if the square is not empty"
 
         return True, None
+
+    @staticmethod
+    def attacking_squares(start_pos, board, color):
+        """ start_pos assumed to be in algebraic notation """
+        start_pos_numeric = algebraic_to_numeric(start_pos)
+
+        dx = 1 if color == 'white' else -1
+        squares_attacked = []
+
+        raise NotImplementedError
